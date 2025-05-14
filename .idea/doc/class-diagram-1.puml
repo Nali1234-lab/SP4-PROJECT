@@ -1,0 +1,43 @@
+@startuml
+    class Main {
+        +main(args: String[])$
+    }
+
+    class TurneringApp {
+        -scanner: Scanner
+        -holdListe: ArrayList~Hold~
+        -turneringer: ArrayList~Turnering~
+        +start()
+        -opretHold()
+        -opretTurnering()
+        -registrerKamp()
+        -visHold()
+        -visTurneringer()
+    }
+
+    class Hold {
+        -navn: String
+        -traener: String
+        -point: int
+        +getNavn()
+        +getTraener()
+        +getPoint()
+        +tilfoejPoint()
+    }
+
+    class Turnering {
+        -navn: String
+        -type: String
+        -hold: ArrayList~Hold~
+        +getNavn()
+        +getType()
+        +getHold()
+        +tilfoejHold()
+        +fjernHold()
+    }
+
+    Main --> TurneringApp
+    TurneringApp --> Hold
+    TurneringApp --> Turnering
+    Turnering --> Hold
+@enduml
