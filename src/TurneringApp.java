@@ -34,7 +34,7 @@ public class TurneringApp {
                 case 5 -> showTournament();
                 case 6 -> {
                     System.out.println("Programmet afsluttes.");
-                    return;
+                    System.exit(0);
                 }
                 default -> System.out.println("Ugyldigt valg!");
             }
@@ -80,18 +80,71 @@ public class TurneringApp {
             if (tourChoice < tournaments.size() && tourChoice >= 0) {
 
                 Tournament chooseTour = tournaments.get(tourChoice);
+                ArrayList<Team> knockoutTeams = teamList;
 
                 System.out.println("Vælg hjemmehold:");
                 showTeams();
                 int homeChoice = ui.promptNumeric() - 1;
 
-
                 System.out.println("Vælg udehold:");
-                showTeams();
-                int awayChoice = scanner.nextInt() - 1;
-                scanner.nextLine();
+                showTeamsExcluding(homeChoice);
+                int awayChoice = ui.promptNumeric() - 1;
 
-                System.out.println("Mål for hjemmehold: ");
+                if (chooseTour.getType().equals("Knockout")) {
+                    System.out.println("Hvem tabte:");
+                    System.out.println("1. " + knockoutTeams.get(homeChoice).getName() + "\n" + "2. " +knockoutTeams.get(awayChoice).getName());                    int whoLost = ui.promptNumeric() - 1;
+                    chooseTour.removeTeam(knockoutTeams.get(whoLost));
+                    System.out.println(knockoutTeams.get(whoLost).getName() + " er ude af turneringen!");
+                    knockoutTeams.remove(whoLost);
+
+                } else {
+                    System.out.println("Hvem vandt:");
+                    System.out.println("1. " + teamList.get(homeChoice).getName() + "\n" + "2. " +teamList.get(awayChoice).getName());
+                    int whoWon = ui.promptNumeric() - 1;
+                    teamList.get(whoWon).givePoints(1);
+                    System.out.println("Point opdateret!");
+                }
+                break;
+            } else {
+                System.out.println("Ugyldigt nummer.. prøv igen");
+            }
+        }
+    }
+
+    private void showTeams() {
+        if (teamList.isEmpty()) {
+            System.out.println("Ingen hold oprettet endnu!");
+            return;
+        }
+        for (int i = 0; i < teamList.size(); i++) {
+            System.out.println((i + 1) + ". " + teamList.get(i).getName());
+        }
+    }
+
+    public void showTeamsExcluding(int excludedIndex) {
+        for (int i = 0; i < teamList.size(); i++) {
+            if (i != excludedIndex) {
+                System.out.println((i + 1) + ". " + teamList.get(i).getName());
+            }
+        }
+    }
+
+    private void showTournament() {
+        if (tournaments.isEmpty()) {
+            System.out.println("Ingen turneringer oprettet endnu!");
+            return;
+        }
+        for (Tournament tour : tournaments) {
+            System.out.println("\n" + tour.getName() + " (" + tour.getType() + ")");
+            System.out.println("Deltagende hold:");
+            for (Team team : tour.getHold()) {
+                System.out.println("- " + team.getName());
+            }
+        }
+    }
+
+    private void footballSystem() {
+         /*System.out.println("Mål for hjemmehold: ");
                 int homeGoal = scanner.nextInt();
                 System.out.println("Mål for udehold: ");
                 int awayGoal = scanner.nextInt();
@@ -120,37 +173,7 @@ public class TurneringApp {
                         awayTeam.givePoints(1);
                     }
                     System.out.println("Point opdateret!");
-                }
-                break;
-            } else {
-                System.out.println("Ugyldigt nummer.. prøv igen");
-            }
-        }
-    }
-
-    private void showTeams() {
-        if (teamList.isEmpty()) {
-            System.out.println("Ingen hold oprettet endnu!");
-            return;
-        }
-        for (int i = 0; i < teamList.size(); i++) {
-            Team team = teamList.get(i);
-            System.out.println((i + 1) + ". " + team.getName() + " - " + team.getPoints() + " point");
-        }
-    }
-
-    private void showTournament() {
-        if (tournaments.isEmpty()) {
-            System.out.println("Ingen turneringer oprettet endnu!");
-            return;
-        }
-        for (Tournament tour : tournaments) {
-            System.out.println("\n" + tour.getName() + " (" + tour.getType() + ")");
-            System.out.println("Deltagende hold:");
-            for (Team team : tour.getHold()) {
-                System.out.println("- " + team.getName());
-            }
-        }
+                }*/
     }
 }
 
