@@ -97,6 +97,10 @@ public class TurneringApp {
                     System.out.println(knockoutTeams.get(whoLost).getName() + " er ude af turneringen!");
                     knockoutTeams.remove(whoLost);
 
+                    KnockoutTournament tournament = new KnockoutTournament();
+                    tournament.runTournament();
+
+
                 } else {
                     System.out.println("Hvem vandt:");
                     System.out.println("1. " + teamList.get(homeChoice).getName() + "\n" + "2. " +teamList.get(awayChoice).getName());
