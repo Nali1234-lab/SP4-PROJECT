@@ -1,11 +1,5 @@
-
 public class Main {
     public static void main(String[] args) {
-
-                new TurneringApp().start();
+        new StartMenu("TMS").startSession();
     }
 }
-
-
-
-

@@ -4,22 +4,34 @@ import java.util.Scanner;
 
 public class TextUI {
 
-    Scanner sc = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);
 
     public int promptNumeric() {
-        int numInput = 0;
-        boolean valid = false;
+        int input = 0;
 
-        while (!valid) {
-            String input = sc.nextLine();  // Get user input
+        while (true) {
             try {
-                numInput = Integer.parseInt(input);  // Try converting to number
-                valid = true;  // If successful, mark as valid
+                input = Integer.parseInt(scan.nextLine());
+                break;
             } catch (NumberFormatException e) {
-                displayMessage("Skriv et gyldigt tal.");  // Error message, loop repeats
+
             }
         }
-        return numInput;  // Return the valid number
+        return input;
+    }
+
+    public int promptNumeric(String msg) {
+        int input = 0;
+        System.out.println(msg + " ");
+        while (true) {
+            try {
+                input = Integer.parseInt(scan.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+
+            }
+        }
+        return input;
     }
 
     public void displayMessage(String msg) {
