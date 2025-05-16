@@ -55,15 +55,15 @@ public class PointTournament {
     }
 
     public void startTeamPointTournament() {
-        Map<String, List<String>> hold = teams.getTeams();
+        Map<String, List<String>> team = teams.getTeams();
         Map<String, Integer> pointTable = teams.getTeamPoints();
 
         List<String[]> matches = new ArrayList<>();
-        List<String> holdNavne = new ArrayList<>(hold.keySet());
+        List<String> teamNames = new ArrayList<>(team.keySet());
 
-        for (int i = 0; i < holdNavne.size() - 1; i++) {
-            for (int j = i + 1; j < holdNavne.size(); j++) {
-                matches.add(new String[]{holdNavne.get(i), holdNavne.get(j)});
+        for (int i = 0; i < teamNames.size() - 1; i++) {
+            for (int j = i + 1; j < teamNames.size(); j++) {
+                matches.add(new String[]{teamNames.get(i), teamNames.get(j)});
             }
         }
 

@@ -2,6 +2,9 @@ import java.util.*;
 
 public class Teams {
     private Scanner scan = new Scanner(System.in);
+
+
+
     private Map<String, List<String>> teams = new LinkedHashMap<>();
     private String[] playerNames;
     private Map<String, Integer> teamPoints = new LinkedHashMap<>();
@@ -83,6 +86,10 @@ public class Teams {
 
     public Map<String, Integer> getTeamPoints() {
         return teamPoints;
+    }
+
+    public void setTeams(Map<String, List<String>> teams) {
+        this.teams = teams;
     }
 }
 
