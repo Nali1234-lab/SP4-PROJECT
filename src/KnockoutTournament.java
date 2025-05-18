@@ -4,9 +4,12 @@ import java.util.*;
 
 public class KnockoutTournament {
 
-    private TextUI ui = new TextUI();
-    private Teams t = new Teams();
-    Players players = new Players(t);
+    private Scanner scanner = new Scanner(System.in);
+    private Teams teams;
+
+    public KnockoutTournament(Teams teams) {
+        this.teams = teams;
+    }
 
     public static class Team {
         String name;
@@ -36,10 +39,10 @@ public class KnockoutTournament {
 
         void playMatch(Scanner scanner) {
             if (team1 != null && team2 != null) {
-                System.out.println("Match: " + team1 + " vs " + team2);
+                System.out.println("\nKamp: " + team1 + " vs " + team2);
                 int choice = -1;
                 while (choice != 1 && choice != 2) {
-                    System.out.print("Vælg vinder – skriv 1 for " + team1 + " eller 2 for " + team2 + ": ");
+                    System.out.println("Hvem vandt?\n1. " + team1 + "\n2. " + team2);
                     try {
                         choice = Integer.parseInt(scanner.nextLine());
                     } catch (NumberFormatException e) {
@@ -54,42 +57,43 @@ public class KnockoutTournament {
         }
     }
 
-    public void runTournament() {
-        Scanner scanner = new Scanner(System.in);
-        List<Team> teams = new ArrayList<>();
-
-        /*for (int i = 1; i <= players.getCount(); i++) {
-            System.out.print("Navn på hold " + i + ": ");
-            String name = scanner.nextLine();
-            teams.add(new Team(name));
-        }
-        System.out.println(players.getCount());*/
-
-        if (players.isPlayWithTeam()) {
-            // Hvis der spilles med hold, brug holdnavne fra Teams-klassen
-            for (int i = 0; i < players.getCount(); i++) {
-                System.out.print("Navn på hold " + i + ": ");
-                String name = scanner.nextLine();
-                teams.add(new Team(name));
-            }
-        } else {
-
-            for (String playerName : players.getPlayerNames()) {
-                teams.add(new Team(playerName));
-            }
+    public void runTeamKnockoutTournament() {
+        Map<String, List<String>> teamData = teams.getTeams();
+        
+        List<Team> tournamentTeams = new ArrayList<>();
+        for (String teamName : teamData.keySet()) {
+            tournamentTeams.add(new Team(teamName));
         }
 
-        MatchNode root = buildTree(teams);
-        Team vinder = playTournament(root, scanner);
+        Collections.shuffle(tournamentTeams);
+        
+        MatchNode root = buildTree(tournamentTeams);
+        Team winner = playTournament(root, scanner);
 
-        System.out.println("\n🏆 Vinderen af turneringen er: " + vinder);
+        System.out.println("\n🏆 Vinderen af turneringen er: " + winner);
+    }
+
+    public void runSingleKnockoutTournament(String[] playerNames) {
+        List<Team> tournamentTeams = new ArrayList<>();
+        for (String playerName : playerNames) {
+            tournamentTeams.add(new Team(playerName));
+        }
+
+        Collections.shuffle(tournamentTeams);
+        
+        MatchNode root = buildTree(tournamentTeams);
+        Team winner = playTournament(root, scanner);
+
+        System.out.println("\n🏆 Vinderen af turneringen er: " + winner);
     }
 
     public MatchNode buildTree(List<Team> teams) {
         Queue<MatchNode> queue = new LinkedList<>();
 
         for (int i = 0; i < teams.size(); i += 2) {
-            queue.add(new MatchNode(teams.get(i), teams.get(i + 1)));
+            Team team1 = teams.get(i);
+            Team team2 = teams.get(i + 1);
+            queue.add(new MatchNode(team1, team2));
         }
 
         while (queue.size() > 1) {

@@ -5,8 +5,8 @@ public class Tournament {
     private TextUI ui = new TextUI();
     private Teams teams = new Teams();
     private Players player = new Players(teams);
-    private PointTournament pt = new PointTournament();
-    private KnockoutTournament kn = new KnockoutTournament();
+    private PointTournament pt = new PointTournament(teams);
+    private KnockoutTournament kn = new KnockoutTournament(teams);
 
     public Tournament() {
 
@@ -32,7 +32,6 @@ public class Tournament {
     }
 
     public void knockoutSystem() {
-
         while (true) {
             System.out.println("\nHovedmenu:");
             System.out.println("-------------------");
@@ -47,9 +46,9 @@ public class Tournament {
             switch (choose) {
                 case 1:
                     if(player.isPlayWithTeam()){
-                        kn.runTournament();
+                        kn.runTeamKnockoutTournament();
                     } else {
-                        pt.startSinglePointTournament(player.getPlayerNames());
+                        kn.runSingleKnockoutTournament(player.getPlayerNames());
                     }
                     break;
                 case 2:
@@ -85,9 +84,9 @@ public class Tournament {
             switch (choose) {
                 case 1:
                     if(player.isPlayWithTeam()){
-                        pt.startTeamPointTournament();
+                        pt.runTeamPointTournament();
                     } else {
-                        pt.startSinglePointTournament(player.getPlayerNames());
+                        pt.runSinglePointTournament(player.getPlayerNames());
                     }
                     break;
                 case 2:

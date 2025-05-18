@@ -31,7 +31,7 @@ public class Players {
         while (loop) {
             String choice = scan.nextLine().trim().toLowerCase();
             if (choice.equals("ja")) {
-                playWithTeam = true;
+                setPlayWithTeam(true);
                 loop = false;
 
                 while (true) {
@@ -125,6 +125,10 @@ public class Players {
 
     public Teams getTeams() {
         return teams;
+    }
+
+    public void setPlayWithTeam(boolean playWithTeam) {
+        this.playWithTeam = playWithTeam;
     }
 
     public boolean isPlayWithTeam() {

@@ -1,12 +1,19 @@
 import util.TextUI;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PointTournament {
     private TextUI ui = new TextUI();
-    private Teams teams = new Teams();
+    private Teams teams;
 
-    public void startSinglePointTournament(String[] playerNames) {
+    public PointTournament(Teams teams) {
+        this.teams = teams;
+    }
+
+    public void runSinglePointTournament(String[] playerNames) {
         Map<String, Integer> pointTable = new HashMap<>();
         for (String name : playerNames) {
             pointTable.put(name, 0);
@@ -54,7 +61,7 @@ public class PointTournament {
         }
     }
 
-    public void startTeamPointTournament() {
+    public void runTeamPointTournament() {
         Map<String, List<String>> team = teams.getTeams();
         Map<String, Integer> pointTable = teams.getTeamPoints();
 
