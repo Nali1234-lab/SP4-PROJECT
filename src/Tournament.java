@@ -35,17 +35,18 @@ public class Tournament {
         while (true) {
             System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering 🏅");
+            System.out.println("1. Start turnering 🏆");
             System.out.println("2. Vis spillere 👤");
             System.out.println("3. Vis hold 💪");
-            System.out.println("4. Afslut 🏁");
+            System.out.println("4. Start ny turnering 🏅");
+            System.out.println("5. Afslut 🏁");
             System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
 
             switch (choose) {
                 case 1:
-                    if(player.isPlayWithTeam()){
+                    if (player.isPlayWithTeam()) {
                         kn.runTeamKnockoutTournament();
                     } else {
                         kn.runSingleKnockoutTournament(player.getPlayerNames());
@@ -60,6 +61,8 @@ public class Tournament {
                     teams.printTeams();
                     break;
                 case 4:
+                    buildTournament();
+                case 5:
                     System.out.println("Programmet afsluttes.");
                     System.exit(0);
                 default:
@@ -73,17 +76,18 @@ public class Tournament {
         while (true) {
             System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering 🏅");
+            System.out.println("1. Start turnering 🏆");
             System.out.println("2. Vis spillere 👤");
             System.out.println("3. Vis hold 💪");
-            System.out.println("4. Afslut 🏁");
+            System.out.println("4. Start ny turnering 🏅");
+            System.out.println("5. Afslut 🏁");
             System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
 
             switch (choose) {
                 case 1:
-                    if(player.isPlayWithTeam()){
+                    if (player.isPlayWithTeam()) {
                         pt.runTeamPointTournament();
                     } else {
                         pt.runSinglePointTournament(player.getPlayerNames());
@@ -93,12 +97,14 @@ public class Tournament {
                     for (String name : player.getPlayerNames()) {
                         System.out.println("- " + name);
                     }
-                break;
+                    break;
                 case 3:
                     teams.printTeams();
                     break;
                 case 4:
-                    System.out.println("Programmet afsluttes. 🚘");
+                    buildTournament();
+                case 5:
+                    System.out.println("Programmet afsluttes.");
                     System.exit(0);
                 default:
                     System.out.println("Ugyldigt valg! ❌");
