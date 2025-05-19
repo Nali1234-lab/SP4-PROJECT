@@ -1,0 +1,38 @@
+@startuml
+
+object Main
+object StartMenu
+object Tournament
+object Teams
+object Players
+object PointTournament
+object KnockoutTournament
+object Match
+object Team
+object Player
+object MatchNode
+object PlayMatch
+object ViewTeams
+object ViewPlayers
+object Exit
+
+Main --> StartMenu
+StartMenu --> Tournament
+Tournament --> Teams
+Tournament --> Players
+Tournament --> PointTournament
+Tournament --> KnockoutTournament
+Teams --> Team
+Players --> Player
+PointTournament --> Match
+KnockoutTournament --> MatchNode
+Match --> PlayMatch
+MatchNode --> PlayMatch
+PlayMatch --> Tournament
+Tournament --> ViewTeams
+Tournament --> ViewPlayers
+Tournament --> Exit
+ViewTeams --> Teams
+ViewPlayers --> Players
+
+@enduml
