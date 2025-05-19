@@ -57,7 +57,7 @@ public class PointTournament {
 
         System.out.println("\nSlutstilling:");
         for (Map.Entry<String, Integer> entry : sorted) {
-            System.out.printf("%-12s | %2d point\n", entry.getKey(), entry.getValue());
+            System.out.printf("%-15s | %2d point\n", entry.getKey(), entry.getValue());
         }
     }
 
@@ -68,6 +68,7 @@ public class PointTournament {
         List<String[]> matches = new ArrayList<>();
         List<String> teamNames = new ArrayList<>(team.keySet());
 
+        System.out.println(teams.getTeams().size());
         for (int i = 0; i < teamNames.size() - 1; i++) {
             for (int j = i + 1; j < teamNames.size(); j++) {
                 matches.add(new String[]{teamNames.get(i), teamNames.get(j)});
@@ -103,7 +104,7 @@ public class PointTournament {
 
         System.out.println("\nSlutstilling:");
         for (Map.Entry<String, Integer> entry : sorted) {
-            System.out.printf("%-12s | %2d point\n", entry.getKey(), entry.getValue());
+            System.out.printf("%-15s | %2d point\n", entry.getKey(), entry.getValue());
         }
     }
 }

@@ -1,43 +1,111 @@
 @startuml
-    class Main {
-        +main(args: String[])$
-    }
 
-    class TurneringApp {
-        -scanner: Scanner
-        -holdListe: ArrayList~Hold~
-        -turneringer: ArrayList~Turnering~
-        +start()
-        -opretHold()
-        -opretTurnering()
-        -registrerKamp()
-        -visHold()
-        -visTurneringer()
-    }
+class Main {
+    + {static} main(String[] args)
+}
 
-    class Hold {
-        -navn: String
-        -traener: String
-        -point: int
-        +getNavn()
-        +getTraener()
-        +getPoint()
-        +tilfoejPoint()
-    }
+class StartMenu {
+    - tournamentName: String
+    + StartMenu(String name)
+    + startSession(): void
+}
 
-    class Turnering {
-        -navn: String
-        -type: String
-        -hold: ArrayList~Hold~
-        +getNavn()
-        +getType()
-        +getHold()
-        +tilfoejHold()
-        +fjernHold()
-    }
+class Tournament {
+    - ui: TextUI
+    - teams: Teams
+    - player: Players
+    - pt: PointTournament
+    - kn: KnockoutTournament
+    + buildTournament(): void
+    + knockoutSystem(): void
+    + pointSystem(): void
+}
 
-    Main --> TurneringApp
-    TurneringApp --> Hold
-    TurneringApp --> Turnering
-    Turnering --> Hold
+class Teams {
+    - scan: Scanner
+    - teams: Map<String, List<String>>
+    - playerNames: String[]
+    - teamPoints: Map<String, Integer>
+    + assignRandomTeams(int numTeams): void
+    + assignManualTeams(int numTeams): void
+    + printTeams(): void
+    + setPlayerNames(String[] playerNames): void
+    + getTeams(): Map<String, List<String>>
+    + getTeamPoints(): Map<String, Integer>
+    + setTeams(Map<String, List<String>> teams): void
+}
+
+class Players {
+    - scan: Scanner
+    - ui: TextUI
+    - playerNames: String[]
+    - teams: Teams
+    - playWithTeam: boolean
+    - count: int
+    + Players(Teams teams)
+    + playersKnockout(String msg): void
+    + playersPoints(String msg): void
+    + getPlayerNames(): String[]
+    + getTeams(): Teams
+    + setPlayWithTeam(boolean playWithTeam): void
+    + isPlayWithTeam(): boolean
+    + setCount(int count): void
+    + getCount(): int
+}
+
+class PointTournament {
+    - teams: Teams
+    + runTeamPointTournament(): void
+    + runSinglePointTournament(String[] playerNames): void
+}
+
+class KnockoutTournament {
+    - scanner: Scanner
+    - teams: Teams
+    + runTeamKnockoutTournament(): void
+    + runSingleKnockoutTournament(String[] playerNames): void
+    + buildTree(List<Team> teams): MatchNode
+    + playTournament(MatchNode node, Scanner scanner): Team
+}
+
+class Team {
+    - name: String
+    + Team(String name)
+    + toString(): String
+}
+
+class MatchNode {
+    - team1: Team
+    - team2: Team
+    - left: MatchNode
+    - right: MatchNode
+    - winner: Team
+    + MatchNode(Team team1, Team team2)
+    + playMatch(Scanner scanner): void
+}
+
+class TextUI {
+    + promptNumeric(): int
+}
+
+Main --> StartMenu
+StartMenu --> Tournament
+Tournament --> Teams
+Tournament --> Players
+Tournament --> PointTournament
+Tournament --> KnockoutTournament
+Tournament --> TextUI
+Players --> Teams
+Players --> TextUI
+PointTournament --> Teams
+KnockoutTournament --> Teams
+KnockoutTournament *-- "2" Team
+KnockoutTournament *-- "1" MatchNode
+MatchNode *-- "2" Team
+
+note "Inner class of\nKnockoutTournament" as N1
+note "Inner class of\nKnockoutTournament" as N2
+Team .. N1
+MatchNode .. N2
+
 @enduml

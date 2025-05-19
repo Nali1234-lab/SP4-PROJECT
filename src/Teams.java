@@ -15,6 +15,7 @@ public class Teams {
             teams.put(teamName, new ArrayList<>());
             teamPoints.put(teamName, 0);
         }
+        setTeams(teams);
 
         List<String> shuffled = new ArrayList<>(Arrays.asList(playerNames));
 

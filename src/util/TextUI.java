@@ -33,9 +33,4 @@ public class TextUI {
         }
         return input;
     }
-
-    public void displayMessage(String msg) {
-
-        System.out.println(msg);
-    }
 }
