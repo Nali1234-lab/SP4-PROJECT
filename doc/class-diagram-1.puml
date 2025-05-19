@@ -86,6 +86,7 @@ class MatchNode {
 
 class TextUI {
     + promptNumeric(): int
+    + promptNumeric(String msg): int
 }
 
 Main --> StartMenu

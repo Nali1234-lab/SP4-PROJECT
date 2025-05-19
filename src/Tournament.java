@@ -35,10 +35,11 @@ public class Tournament {
         while (true) {
             System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering 🏅");
+            System.out.println("1. Start turnering 🏆");
             System.out.println("2. Vis spillere 👤");
             System.out.println("3. Vis hold 💪");
-            System.out.println("4. Afslut 🏁");
+            System.out.println("4. Start ny turnering 🏅");
+            System.out.println("5. Afslut 🏁");
             System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
@@ -60,6 +61,8 @@ public class Tournament {
                     teams.printTeams();
                     break;
                 case 4:
+                    buildTournament();
+                case 5:
                     System.out.println("Programmet afsluttes.");
                     System.exit(0);
                 default:
@@ -71,13 +74,14 @@ public class Tournament {
     public void pointSystem() {
 
         while (true) {
-            System.out.println("\nHovedmenu:");
+            System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering");
-            System.out.println("2. Vis spillere");
-            System.out.println("3. Vis hold");
-            System.out.println("4. Afslut");
-            System.out.println("Vælg en mulighed: ");
+            System.out.println("1. Start turnering 🏆");
+            System.out.println("2. Vis spillere 👤");
+            System.out.println("3. Vis hold 💪");
+            System.out.println("4. Start ny turnering 🏅");
+            System.out.println("5. Afslut 🏁");
+            System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
 
@@ -98,6 +102,8 @@ public class Tournament {
                     teams.printTeams();
                     break;
                 case 4:
+                    buildTournament();
+                case 5:
                     System.out.println("Programmet afsluttes.");
                     System.exit(0);
                 default:
