@@ -13,20 +13,20 @@ public class Tournament {
     }
 
     public void buildTournament() {
-        System.out.println("Vælg tuneringstype:\n1. Point System\n2. Knockout System");
+        System.out.println("Vælg tuneringstype:\n1. Point System \uD83E\uDD45\n2. Knockout System ☠️");
         while (true) {
             int chooseType = ui.promptNumeric();
 
             if (chooseType == 1) {
-                player.playersPoints("Hvor mange spillere vil du have?");
+                player.playersPoints("Hvor mange spillere vil du have? 👯");
                 pointSystem();
                 break;
             } else if (chooseType == 2) {
-                player.playersKnockout("Hvor mange spillere vil du have?");
+                player.playersKnockout("Hvor mange spillere vil du have? 👯");
                 knockoutSystem();
                 break;
             } else {
-                System.out.println("Vælg venligst en af systemerne");
+                System.out.println("Vælg venligst en af systemerne \uD83D\uDCE2");
             }
         }
     }
@@ -35,11 +35,10 @@ public class Tournament {
         while (true) {
             System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering 🏆");
+            System.out.println("1. Start turnering 🏅");
             System.out.println("2. Vis spillere 👤");
             System.out.println("3. Vis hold 💪");
-            System.out.println("4. Start ny turnering 🏅");
-            System.out.println("5. Afslut 🏁");
+            System.out.println("4. Afslut 🏁");
             System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
@@ -61,8 +60,6 @@ public class Tournament {
                     teams.printTeams();
                     break;
                 case 4:
-                    buildTournament();
-                case 5:
                     System.out.println("Programmet afsluttes.");
                     System.exit(0);
                 default:
@@ -76,11 +73,10 @@ public class Tournament {
         while (true) {
             System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering 🏆");
+            System.out.println("1. Start turnering 🏅");
             System.out.println("2. Vis spillere 👤");
             System.out.println("3. Vis hold 💪");
-            System.out.println("4. Start ny turnering 🏅");
-            System.out.println("5. Afslut 🏁");
+            System.out.println("4. Afslut 🏁");
             System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
@@ -102,12 +98,10 @@ public class Tournament {
                     teams.printTeams();
                     break;
                 case 4:
-                    buildTournament();
-                case 5:
-                    System.out.println("Programmet afsluttes.");
+                    System.out.println("Programmet afsluttes. 🚘");
                     System.exit(0);
                 default:
-                    System.out.println("Ugyldigt valg!");
+                    System.out.println("Ugyldigt valg! ❌");
             }
         }
     }
