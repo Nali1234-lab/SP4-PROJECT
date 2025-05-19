@@ -33,13 +33,13 @@ public class Tournament {
 
     public void knockoutSystem() {
         while (true) {
-            System.out.println("\nHovedmenu:");
+            System.out.println("\nHovedmenu: 📃");
             System.out.println("-------------------");
-            System.out.println("1. Start turnering");
-            System.out.println("2. Vis spillere");
-            System.out.println("3. Vis hold");
-            System.out.println("4. Afslut");
-            System.out.println("Vælg en mulighed: ");
+            System.out.println("1. Start turnering 🏅");
+            System.out.println("2. Vis spillere 👤");
+            System.out.println("3. Vis hold 💪");
+            System.out.println("4. Afslut 🏁");
+            System.out.println("Vælg en mulighed: ✅");
 
             int choose = ui.promptNumeric();
 
