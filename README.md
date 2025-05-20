@@ -6,4 +6,5 @@ En tekst baseret applikation som giver brugeren muligheden for at oprette og adm
 * Brugeren skal kunne vælge mellem to turneringsformer:
   
 -- et simple universal point system.
+
 -- Knockout
