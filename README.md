@@ -4,5 +4,5 @@ En tekst baseret applikation som giver brugeren muligheden for at oprette og adm
 * Systemet skal kunne afvikle en knockout-turnering, hvor brugeren vælger vinderen af hver kamp manuelt.
 * Vinderen skal vises til sidst, og systemet skal følge en logisk turneringsstruktur (kamp-træ).
 * Brugeren skal kunne vælge mellem to turneringsformer:
-- et simple universal point system.
-- Knockout
+-- et simple universal point system.
+-- Knockout
